@@ -49,9 +49,10 @@ def load_admin_events(path: Path | None = None) -> pd.DataFrame | None:
 
 
 def prepare(lookback_start: str, eval_start: str, end: str, admin_events: pd.DataFrame | None = None) -> Context:
-    """end = 마지막 리밸런싱일이 속한 달의 말일(그 달까지의 보유 수익률을 쓴다)."""
-    frames = {k: load_wide(k, lookback_start, end) for k in FRAME_KEYS}
-    days = trading_days(lookback_start, end)
+    """end = 마지막 리밸런싱일 t' 가 속한 달의 말일. 마지막 보유 월의 청산가(t'+1 시가)를 위해 데이터는 end 뒤 10일까지 더 읽는다(D6)."""
+    end_load = (pd.Timestamp(end) + pd.Timedelta(10, unit="D")).strftime("%Y-%m-%d")
+    frames = {k: load_wide(k, lookback_start, end_load) for k in FRAME_KEYS}
+    days = trading_days(lookback_start, end_load)
     for k in FRAME_KEYS:
         frames[k] = frames[k].reindex(days)
     kospi = load_kospi().reindex(days)

@@ -113,7 +113,6 @@ def main() -> None:
         spans = spans.head(a.limit)
     jobs = [(r.ticker, s, e) for r in spans.itertuples() for (s, e) in windows(r.first, r.last)]
     print(f"tickers={len(spans)} windows(calls)={len(jobs)}")
-    sess = get_session()
     n_call = n_skip = consec_fail = 0
     t0 = time.time()
     for i, (tk, s, e) in enumerate(jobs, 1):
@@ -126,6 +125,7 @@ def main() -> None:
         ok = False
         for attempt in range(1, 4):
             try:
+                sess = get_session()  # 1시간 만료 시 pykrx 가 자동 재로그인하도록 매 요청마다 얻는다
                 r = sess.post(URL, data=data, headers=HEADERS, timeout=30)
                 j = r.json()
                 rows = j.get("output", [])
@@ -144,8 +144,14 @@ def main() -> None:
         if not ok:
             consec_fail += 1
             if consec_fail >= 5:
-                print("[ABORT] 5 consecutive failures", file=sys.stderr)
-                sys.exit(2)
+                print("[PAUSE] 5 consecutive failures — KRX 점검·차단 가능성. 10분 뒤 계속", file=sys.stderr)
+                time.sleep(600)
+                consec_fail = 0
+                pauses = globals().get('_pauses', 0) + 1
+                globals()['_pauses'] = pauses
+                if pauses >= 12:
+                    print("[ABORT] 2시간 넘게 실패", file=sys.stderr)
+                    sys.exit(2)
         if i % 200 == 0 or i == len(jobs):
             print(f"[{i}/{len(jobs)}] calls={n_call} skipped={n_skip} elapsed={(time.time()-t0)/60:.1f}min", flush=True)
     # 합치기
