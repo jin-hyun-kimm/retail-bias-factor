@@ -1,0 +1,7 @@
+Metadata-Version: 2.4
+Name: rbf
+Version: 0.1.0
+Summary: retail-bias-factor: 개인투자자 행동 편향의 흔적으로 만든 역발상 팩터 (연구 코드)
+Requires-Python: >=3.12
+License-File: LICENSE
+Dynamic: license-file

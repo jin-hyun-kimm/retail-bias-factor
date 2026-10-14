@@ -6,7 +6,7 @@ pykrx 에 없는 화면이라 pykrx 의 로그인 세션으로 직접 호출한�
 - designDdYn=Y 면 이벤트(관리종목지정·해제·사유변경)만 돌려준다.
 
 대상 티커: data/raw/ohlcv 의 KOSPI·KOSDAQ 스냅샷에 한 번이라도 나온 보통주(끝자리 '0', 스팩 제외).
-창: 2015-01-02 이전부터 상장돼 있던 종목은 2011-01-01 부터(2015 이전 지정분이 2015 이후 해제되는 경우를 잡기 위해),
+창: 2010-01-04 이전부터 상장돼 있던 종목은 2006-01-01 부터(2010 이전 지정분이 2010 이후 해제되는 경우를 잡기 위해),
     그 뒤 상장한 종목은 처음 보인 날부터, 마지막으로 보인 날까지.
 
 출력: data/raw/admin/{ticker}_{strt}_{end}.csv (이벤트 0건이면 헤더만 있는 빈 파일 — 재실행 시 건너뛰기 위함)
@@ -39,8 +39,8 @@ HEADERS = {
     "Referer": "https://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC02020702",
     "X-Requested-With": "XMLHttpRequest",
 }
-BACKFILL_FROM = "20110101"
-PERIOD_START = "20150102"
+BACKFILL_FROM = "20060101"
+PERIOD_START = "20100104"
 WINDOW_DAYS = 729  # 2년 한도 안쪽
 
 

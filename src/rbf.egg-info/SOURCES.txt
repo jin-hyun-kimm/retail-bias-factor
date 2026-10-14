@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/rbf/__init__.py
+src/rbf/config.py
+src/rbf/io_raw.py
+src/rbf.egg-info/PKG-INFO
+src/rbf.egg-info/SOURCES.txt
+src/rbf.egg-info/dependency_links.txt
+src/rbf.egg-info/top_level.txt
