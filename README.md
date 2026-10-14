@@ -4,7 +4,25 @@
 
 - 브리프(사전 등록 원문): [`mirae_brief.md`](mirae_brief.md)
 - 0단계 데이터 확인 보고: [`docs/00_stage0_data_check.md`](docs/00_stage0_data_check.md)
-- 설계 결정 로그 / 사전등록 문서 / 결과 리포트: 단계별로 `docs/` 에 추가
+- 리서치 요약(문헌 3편·데이터 가용성): [`docs/01_research.md`](docs/01_research.md)
+- 설계 결정 로그 D1~D24: [`docs/02_design.md`](docs/02_design.md)
+- 사전등록 문서(가설·판정 기준·잠금 커밋): [`docs/03_preregistration.md`](docs/03_preregistration.md)
+- 결과: `results/stage1/summary.md`(탐색), `results/stage2/summary.md`(홀드아웃), `results/stage3/`(ML·오버레이), `results/report.html`, 그림 `figures/`
+
+## 파이프라인
+
+| 단계 | 명령 | 산출물 |
+|---|---|---|
+| 수집 | `scripts/collect_krx.py`, `scripts/collect_admin_issue.py` (순차 실행은 `scripts/run_collection_chain.sh`) | `data/raw/` |
+| 가공 | `python -m rbf.io_raw` | `data/processed/{연도}/{변수}.parquet` |
+| 검증 | `scripts/validate_data.py`, `pytest` | `results/data_validation.md`, 테스트 12개 |
+| 1단계 탐색 | `scripts/run_stage1.py` | `results/stage1/` (5분위·FM·비용·소구간·플라시보·MDE) |
+| 2단계 홀드아웃 | `scripts/run_holdout.py --note ...` (잠금 후 1회; 실행마다 `results/holdout_runs.jsonl` 기록) | `results/stage2/` + 판정 |
+| 3단계 | `scripts/run_stage3_ml.py`, `scripts/run_stage3_overlay.py` | `results/stage3/` |
+| 4단계 | `scripts/make_figures.py`, `scripts/make_report.py` | `figures/`, `results/report.html` |
+| 전부 | `scripts/run_all.sh` | 위 전체 |
+
+코드는 `src/rbf/`: `config`(상수) · `io_raw`(원천→parquet) · `signals`(지표) · `returns`(t+1 시가 체결 보유 수익률) · `universe`(제외 규칙·관리종목 복원) · `fm`(윈저라이즈·Fama–MacBeth·MDE) · `portfolio`(5분위·비용) · `analysis`(가설별 검정).
 
 ## 재현
 
