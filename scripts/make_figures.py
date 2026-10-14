@@ -120,7 +120,7 @@ def fig_fear(s3: Path, out: Path) -> None:
         axes[0].scatter(ev["event"], [2.0] * len(ev), color="r", s=18, zorder=3, label=f"z≥2 사건 {len(ev)}건")
         axes[0].legend(fontsize=8)
     axes[0].axvline(pd.Timestamp("2020-12-30"), color="k", ls="--", lw=0.8)
-    axes[0].set_title("공포 z (인버스 − 레버리지 ETF 개인 순매수 20일 합, 250일 표준화)")
+    axes[0].set_title("공포 z (인버스 - 레버리지 ETF 개인 순매수 20일 합, 250일 표준화)")
     axes[0].grid(alpha=0.3)
     x = np.arange(len(es))
     axes[1].bar(x - 0.18, es["event_mean"] * 100, 0.36, label="사건 후 평균", color="r")
