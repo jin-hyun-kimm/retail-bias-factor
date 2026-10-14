@@ -1,0 +1,32 @@
+{
+ "ts": "2026-10-15T01:27:40",
+ "commit": "70fa5b3bd67e3b96757e37b3c4d1d05e71fd591c",
+ "lookback": "2009-01-02",
+ "eval_start": "2010-01-04",
+ "end": "2020-12-31",
+ "admin_applied": false,
+ "n_rebal": 131,
+ "verdicts": {
+  "h1": {
+   "coef": 0.004552169124585831,
+   "t": 4.507205439731665,
+   "sign_as_hypothesized": false,
+   "explore_pass_t2": false,
+   "t_ge_3": false
+  },
+  "h2": {
+   "coef": 0.0008276069310998588,
+   "t": 0.6365742802653369,
+   "sign_as_hypothesized": true,
+   "explore_pass_t2": false,
+   "t_ge_3": false
+  },
+  "h3": {
+   "coef": 0.0012644578265916134,
+   "t": 1.823858075806566,
+   "sign_as_hypothesized": false,
+   "explore_pass_t2": false,
+   "t_ge_3": false
+  }
+ }
+}
