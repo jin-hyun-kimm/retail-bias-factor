@@ -40,7 +40,7 @@ def md_table(df: pd.DataFrame, nd=4, index=True) -> str:
         d = d.reset_index()
     cols = list(d.columns)
     lines = ["| " + " | ".join(map(str, cols)) + " |", "|" + "---|" * len(cols)]
-    for _, r in d.iterrows():
+    for _, r in d.astype(object).iterrows():
         lines.append("| " + " | ".join(fmt(v, nd) if isinstance(v, float) else str(v) for v in r.values) + " |")
     return "\n".join(lines)
 
