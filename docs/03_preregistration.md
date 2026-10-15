@@ -35,15 +35,15 @@ ML: 특징 = RNB5, 급락, CGO260, RSH20, MAX20, 심리, 통제 5개; 목표 = �
 
 ## 잠금
 
-- 잠금 커밋: 3ebb6312f022778a9613e099b3673b18c665b38d (공개 전 히스토리 재작성 후 해시. 재작성 전 해시 8df179cd1b5e4b874737a6c2308f4668013f7f8d)
-- 히스토리 재작성 기록 (2026-10-15, 공개 직전): 저자 이름·이메일 수정과 git 제외 대상(`data/processed/`, `results/dev/`, `results/*/*.parquet`) 제거를 위해 `git filter-repo` 로 전 커밋을 다시 썼다. 코드·문서·결과 CSV 의 blob 은 바꾸지 않았다(재작성 전후 `git ls-tree -r` blob 해시 비교로 확인). `results/holdout_runs.jsonl` 과 `results/*/run_meta.json` 에 적힌 해시는 재작성 전 값이며 아래 표로 대응한다.
+- 잠금 커밋: 32b40547cb573a1a813d71e2b469510878c587b9 (공개 전 히스토리 재작성 2회 후 해시. 1차 재작성 후 3ebb6312f022778a9613e099b3673b18c665b38d, 재작성 전 8df179cd1b5e4b874737a6c2308f4668013f7f8d)
+- 히스토리 재작성 기록 (2026-10-15, 공개 직전, 2회): ① 저자 이름·이메일 수정과 git 제외 대상(`data/processed/`, `results/dev/`, `results/*/*.parquet`) 제거, ② 브리프 원문 `mirae_brief.md` 제거를 위해 `git filter-repo` 로 전 커밋을 다시 썼다. 코드·문서·결과 CSV 의 blob 은 바꾸지 않았다(재작성 전후 `git ls-tree -r` blob 해시 비교로 확인). `results/holdout_runs.jsonl` 과 `results/*/run_meta.json` 에 적힌 해시는 재작성 전 값이며 아래 표로 대응한다.
 
-| 재작성 전 | 재작성 후 | 내용 |
-|---|---|---|
-| 8df179c | 3ebb631 | 1단계 탐색 결과·보고서 (잠금 대상) |
-| cb5f49c | 0a24b42 | 사전등록 잠금 |
-| 01e0866 | 84a8baa | 홀드아웃 1회 실행 |
-| 938db53 | 17eaba9 | ML·오버레이 |
-| b1a8870 | 60fb7d0 | 그림·리포트·문서 |
+| 재작성 전 | 1차 재작성 후 | 2차 재작성 후 | 내용 |
+|---|---|---|---|
+| 8df179c | 3ebb631 | 32b4054 | 1단계 탐색 결과·보고서 (잠금 대상) |
+| cb5f49c | 0a24b42 | 19612f2 | 사전등록 잠금 |
+| 01e0866 | 84a8baa | ef48112 | 홀드아웃 1회 실행 |
+| 938db53 | 17eaba9 | 68a3e0d | ML·오버레이 |
+| b1a8870 | 60fb7d0 | e6a1744 | 그림·리포트·문서 |
 - 잠금 날짜: 2026-10-15 (1단계 탐색 결과 확인 직후; 탐색 결과는 docs/04_stage1_report.md)
 - 홀드아웃 실행 횟수: `results/holdout_runs.jsonl` 줄 수 (리포트에 그대로 적는다)
